@@ -1,21 +1,20 @@
 <?php
-
-require_once('vendor/autoload.php');
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-$lastfm_key = $_ENV['LASTFM_KEY'];
-$username=$_POST['username'];
-$json = file_get_contents('http://ws.audioscrobbler.com/2.0/?'.
-                            'method=user.gettopalbums&'.
-                            'user='.$username.'&'.
-                            'api_key='.$lastfm_key.'&'.
-                            'format=json');
-$obj = json_decode($json);
-$url = $obj->topalbums->album[0]->image[3]->{'#text'};
-$image = file_get_contents($url);
-$img = new Imagick();
-$img -> readImageBlob($image);
-header('Content-Type: image/png');
-echo $img;
+    include 'request.php';
+    $username=$_GET['username'];
+    $period=$_GET['period'];
+    $limit=$_GET['limit'];
+    $weWantGifChart = isset($_GET['gifChart']);
+    $username = mb_ereg_replace("[^\w\s_-]", '', $username);
+    
+    try{
+        $request = new Request($username, $period, $limit);
+        $chart = $weWantGifChart ? $request->getGifChart() : $request->getCollageChart();
+        header('Content-Type: image/'.$chart->getImageFormat());
+        header('Content-Disposition: inline; filename="' . $username . ' chart.'.$chart->getImageFormat().'"');
+        echo $chart->getImagesBlob();
+    }
+    catch (Exception $e){
+        echo $e->getMessage();
+        include ('index.html');
+    }
 ?>

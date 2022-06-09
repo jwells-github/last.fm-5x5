@@ -1,12 +1,29 @@
 <html>
     <body>
         <h1>Enter your Last.FM user name</h1>
-        <form action="get_chart.php" method="post">
+        <form action="get_chart.php" method="GET">
             <fieldset>
-                <p>
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username"/>
-                </p>
+                    <input required type="text" id="username" name="username"/>
+                    <label for="limit">Chart Size</label>
+                    <select name="limit" id="period">
+                        <option value="4">2x2</option>
+                        <option value="9">3x3</option>
+                        <option value="16">4x4</option>
+                        <option selected value="25">5x5</option>
+                        <option value="36">6x6</option>
+                    </select>
+                    <label for="period">Period</label>
+                    <select name="period" id="period">
+                        <option selected value="7day">Last 7 Days</option>
+                        <option value="1month">Last Month</option>
+                        <option value="3month">Last 3 Months</option>
+                        <option value="6month">Last 6 Months</option>
+                        <option value="12month">Last Year</option>
+                        <option value="overall">All Time</option>
+                    </select>
+                    <input type="checkbox" name="gifChart" id="gifChart">
+                    <label>Gif chart</label>
             </fieldset>
             <p>
                 <input type="submit" value="Generate chart"/>
