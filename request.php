@@ -8,7 +8,7 @@
 
     class Request {
 
-        const MAX_ALBUMS = 30;
+        const MAX_ALBUMS = 36;
         private $username;
         private $period;
         private $limit;
