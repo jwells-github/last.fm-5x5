@@ -49,11 +49,11 @@
                 $img = $imageWriter->getImage();
                 // half the image size
                 $img->resizeImage($img->getimageWidth()/2,$img->getimageHeight()/2,0,0);               
-                // Work out the next position in the grid to place the image
-                $width = ($i % $this->gridSize) * 300;
-                $height = (intdiv($i, $this->gridSize)) * 300;
+                // Work out the next position on the grid to place the image
+                $xPosition = ($i % $this->gridSize) * 300;
+                $yPosition = (intdiv($i, $this->gridSize)) * 300;
                 // place the image on the canvas
-                $chart->compositeImage($img, Imagick::COMPOSITE_DEFAULT, $width, $height);
+                $chart->compositeImage($img, Imagick::COMPOSITE_DEFAULT, $xPosition, $yPosition);
                 $i++;
             }
             $chart->setImageFormat("png");
