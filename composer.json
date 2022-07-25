@@ -1,5 +1,13 @@
 {
+    "name": "jaked/jakes-lastfm-5x5",
+    "description": "a collage chart generator for lastfm",
     "require": {
+        "phpunit/phpunit": "^9.5",
         "vlucas/phpdotenv": "^5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jaked\\JakesLastfm5x5\\": "src/"
+        }
     }
 }
