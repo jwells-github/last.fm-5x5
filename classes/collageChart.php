@@ -7,7 +7,7 @@
         const TEXT_STARTING_HEIGHT = 44.0;
         private $drawSettings;
         private $albums;
-        private $gridSize;
+        public $gridSize;
 
         public function __construct($albums) {
             $drawSettings = new ImagickDraw();
