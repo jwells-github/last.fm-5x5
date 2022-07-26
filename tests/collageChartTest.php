@@ -1,7 +1,6 @@
 <?php
 
     use PHPUnit\Framework\TestCase;
-    require_once  './classes/request.php';
     require_once  './classes/collageChart.php';
     require_once  './classes/album.php';
 
